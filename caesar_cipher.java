@@ -156,6 +156,7 @@ class caesar_cipher {
 
 
         encryptedVal= inputVals;
+        System.out.println(Arrays.toString(encryptedVal));
         return encryptedVal;
     }
 
