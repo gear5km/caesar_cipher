@@ -288,7 +288,10 @@ class caesar_cipher {
 
         return outputVal;
     }
-
-
-
 }
+
+class caesar_cipher_input{}
+class caesar_cipher_encoder{}
+class caesar_cipher_decoder{}
+class caesar_cipher_output{}
+
