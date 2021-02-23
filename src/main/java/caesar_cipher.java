@@ -23,7 +23,9 @@ class caesar_cipher {
         int messageLength= userMessage.length();
         System.out.println("A Shift Value of " + shiftValue + " Has been Set");
 
-
+        /************************************************************************************
+         *Assigns values to the relevant classes for conversion
+         ************************************************************************************/
 
         stringToNumber newMessage= new stringToNumber(userMessage);// Creates a new stringToNumber Object
         newMessage.textInput=userMessage;
@@ -32,7 +34,7 @@ class caesar_cipher {
         System.out.println("class Def returned Code: " + Arrays.toString(enumerated));
 
 
-        encoder encryptedMessage = new encoder(enumerated, shiftValue);
+        encoder encryptedMessage = new encoder(enumerated, shiftValue);// Creates an Encoder Object
         encryptedMessage.inputVals= enumerated;
         encryptedMessage.shiftValue= shiftValue;
         int[] encrypted = encryptedMessage.convertToEncode();
@@ -40,8 +42,7 @@ class caesar_cipher {
         
         System.out.println("Would You like to Decrypt a message?");
 
-        //int []decryptedVal=decryptor(encrypted, shiftValue);
-        decoder decryptedVal= new decoder(encrypted,shiftValue);
+        decoder decryptedVal= new decoder(encrypted,shiftValue); // Creates a Decoder Object
         decryptedVal.encryptedVal=encrypted;
         decryptedVal.shiftValue=shiftValue;
         int[] decrypted =decryptedVal.convertToDecode();
