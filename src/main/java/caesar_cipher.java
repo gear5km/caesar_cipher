@@ -1,115 +1,7 @@
 package src.main.java;
 
-import java.io.Console;
 import java.util.Arrays;
 import java.util.Scanner;
-
- class stringToNumber {
-     /*****************************************************************
-      Assigns a Value to each of the Characters typed by the user
-      *****************************************************************/
-
-    String textInput;
-    char[] textBlock;
-     int[] numberOutput;
-
-     public stringToNumber (String textInput){
-         this.textInput=textInput;
-         this.textBlock=textInput.toCharArray();
-     };
-
-    int[] convertToNumber() {
-        numberOutput= new int[textBlock.length];
-        for (int i=0; i < textBlock.length;i++) {
-            System.out.println(textBlock[i]);
-            for (int a = 0; a < textBlock.length; a++) {
-                switch (textBlock[a]) {
-                    case 'a':
-                        numberOutput[a] = 1;
-                        break;
-                    case 'b':
-                        numberOutput[a] = 2;
-                        break;
-                    case 'c':
-                        numberOutput[a] = 3;
-                        break;
-                    case 'd':
-                        numberOutput[a] = 4;
-                        break;
-                    case 'e':
-                        numberOutput[a] = 5;
-                        break;
-                    case 'f':
-                        numberOutput[a] = 6;
-                        break;
-                    case 'g':
-                        numberOutput[a] = 7;
-                        break;
-                    case 'h':
-                        numberOutput[a] = 8;
-                        break;
-                    case 'i':
-                        numberOutput[a] = 9;
-                        break;
-                    case 'j':
-                        numberOutput[a] = 10;
-                        break;
-                    case 'k':
-                        numberOutput[a] = 11;
-                        break;
-                    case 'l':
-                        numberOutput[a] = 12;
-                        break;
-                    case 'm':
-                        numberOutput[a] = 13;
-                        break;
-                    case 'n':
-                        numberOutput[a] = 14;
-                        break;
-                    case 'o':
-                        numberOutput[a] = 15;
-                        break;
-                    case 'p':
-                        numberOutput[a] = 16;
-                        break;
-                    case 'q':
-                        numberOutput[a] = 17;
-                        break;
-                    case 'r':
-                        numberOutput[a] = 18;
-                        break;
-                    case 's':
-                        numberOutput[a] = 19;
-                        break;
-                    case 't':
-                        numberOutput[a] = 20;
-                        break;
-                    case 'u':
-                        numberOutput[a] = 21;
-                        break;
-                    case 'v':
-                        numberOutput[a] = 22;
-                        break;
-                    case 'w':
-                        numberOutput[a] = 23;
-                        break;
-                    case 'x':
-                        numberOutput[a] = 24;
-                        break;
-                    case 'y':
-                        numberOutput[a] = 25;
-                        break;
-                    case 'z':
-                        numberOutput[a] = 26;
-                        break;
-                }
-                //System.out.println(numberOutput);
-            }
-            ;
-        }
-        return numberOutput;
-    }
-}
 
 class caesar_cipher {
     public static void main(String [] args){
@@ -135,69 +27,31 @@ class caesar_cipher {
 
         stringToNumber newMessage= new stringToNumber(userMessage);// Creates a new stringToNumber Object
         newMessage.textInput=userMessage;
-
         int[]enumerated=newMessage.convertToNumber(); // Takes in Enumerated message
-
         System.out.println("class Def returned " + enumerated.length);
         System.out.println("class Def returned Code: " + Arrays.toString(enumerated));
 
 
-        int []encryptedVal=encryptor(newMessage.convertToNumber(), shiftValue);
+        encoder encryptedMessage = new encoder(enumerated, shiftValue);
+        encryptedMessage.inputVals= enumerated;
+        encryptedMessage.shiftValue= shiftValue;
+        int[] encrypted = encryptedMessage.convertToEncode();
+        System.out.println("New Code is "+ Arrays.toString(encrypted));
         
         System.out.println("Would You like to Decrypt a message?");
 
-        int []decryptedVal=decryptor(encryptedVal, shiftValue);
-        String [] outputVal= numberToString(decryptedVal);
+        //int []decryptedVal=decryptor(encrypted, shiftValue);
+        decoder decryptedVal= new decoder(encrypted,shiftValue);
+        decryptedVal.encryptedVal=encrypted;
+        decryptedVal.shiftValue=shiftValue;
+        int[] decrypted =decryptedVal.convertToDecode();
+        String [] outputVal= numberToString(decrypted);
         String outputValDecoded= Arrays.toString(outputVal);
 
         String str = String.join("", outputVal);
         System.out.println("the value is " + str);
     }
 
-    static int[] encryptor(int inputVals [], int shiftValue ){
-        System.out.println(inputVals);
-        //String convertedInputVal =inputVal.toString();// Turns inputVal into a Readable String
-        //char[] inputConverter= convertedInputVal.toCharArray();// Breaks Down convertedInputVal into an array of individual Char
-        System.out.println(inputVals.length);
-        int inputValLength = inputVals.length;
-        //int newVal;
-        int [] encryptedVal={};
-
-        for (int i=0; i< inputValLength; i++){
-            System.out.println(inputVals[i]);
-        };
-
-        for (int i = 0; i < inputVals.length; i++){
-          inputVals[i]= inputVals[i]+ shiftValue;
-        }
-        System.out.println("checking wait " + inputVals[0]);
-
-
-        encryptedVal= inputVals;
-        System.out.println(Arrays.toString(encryptedVal));
-        return encryptedVal;
-    }
-    static int[] decryptor(int encryptedVal [], int shiftValue ){
-        System.out.println(shiftValue);
-
-        System.out.println(encryptedVal.length);
-        int encryptedValLength = encryptedVal.length;
-        int [] decryptorVal={};
-
-        for (int i=0; i< encryptedValLength; i++){
-            System.out.println(encryptedVal[i]);
-        };
-
-        for (int i = 0; i < encryptedVal.length; i++){
-            encryptedVal[i]= encryptedVal[i]- shiftValue;
-        }
-        System.out.println("checking wait " + encryptedVal[0]);
-
-
-        decryptorVal= encryptedVal;
-        System.out.println(Arrays.toString(encryptedVal));
-        return decryptorVal;
-    }
     static String [] numberToString (int decryptedVal[]) {
 
         int[] outputConverter = decryptedVal;
@@ -300,37 +154,5 @@ class caesar_cipher {
     }
 }
 
-
-
-class encoder {
-     int[] inputVals;
-    int inputValLength;
-    int[] encryptedVal = {};
-
-    encoder(int inputValLength, int[] encryptedVal) {
-        this.inputValLength = inputValLength;
-        this.encryptedVal = encryptedVal;
-    }
-
-    int convertToEncode() {
-        for (int i = 0; i < inputValLength; i++) {
-            System.out.println(inputVals[i]);
-        }
-        ;
-
-        for (int i = 0; i < inputVals.length; i++) {
-            inputVals[i] = inputVals[i] + shiftValue;
-        }
-        System.out.println("checking wait " + inputVals[0]);
-
-    }
-}
-    encryptedVal= inputVals;
-        System.out.println(Arrays.toString(encryptedVal));
-        return encryptedVal;
-}
-
-class decoder{}
-
-class output{}
+class numberToString{}
 
