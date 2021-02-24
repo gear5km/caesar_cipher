@@ -42,7 +42,7 @@ class caesar_cipher {
 
 
 
-        System.out.println("Would You like to Decrypt a message?");
+        System.out.println("Would You like to Decrypt a message? (y/n)");
         Scanner userIn = new Scanner (System.in);
         String userAuth = userIn.next();
         if (userAuth == "y"){
@@ -50,18 +50,21 @@ class caesar_cipher {
             //int[]encrypted1 ={1,2,3,4,5};
         }
 
-
-        decoder decryptedVal= new decoder(encrypted,shiftValue); // Creates a Decoder Object
-        decryptedVal.encryptedVal=encrypted;
-        decryptedVal.shiftValue=shiftValue;
-        int[] decrypted =decryptedVal.convertToDecode();
+        else {
 
 
-        numberToString outPutVal1= new numberToString(decrypted);
-        System.out.println("Decrypted " + outPutVal1.getoutputVal());
+            decoder decryptedVal = new decoder(encrypted, shiftValue); // Creates a Decoder Object
+            decryptedVal.encryptedVal = encrypted;
+            decryptedVal.shiftValue = shiftValue;
+            int[] decrypted = decryptedVal.convertToDecode();
 
-        //String str = String.join("", outputValDecoded);
-        //System.out.println("the value is " + str);
+
+            numberToString outPutVal1 = new numberToString(decrypted);
+            System.out.println("Decrypted " + outPutVal1.convertToString());
+
+            //String str = String.join("", outputValDecoded);
+            //System.out.println("the value is " + str);
+        }
     }
 
 }

@@ -13,7 +13,7 @@ class numberToString{
             this.numberInput=numberInput;
             this.numberBlock = numberInput.length;
         }
-        String[] convertToString(){
+        String convertToString(){
             outputVal= new String[numberInput.length];
             for (int a=0;a<numberInput.length; a++){
                 switch (numberInput[a]){
@@ -100,11 +100,12 @@ class numberToString{
             System.out.println(Arrays.toString(outputVal));
 
 
-            return outputVal;
+            return Arrays.toString(outputVal);
 
         }
 
-        public String getoutputVal(){
+        public String getOutputVal(){
+
             return Arrays.toString(outputVal);
         }
     }
